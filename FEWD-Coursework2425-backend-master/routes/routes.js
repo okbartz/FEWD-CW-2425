@@ -11,7 +11,7 @@ router.get('/talks/session/:term', controller.listSession);
 router.get('/talks/time/:term', controller.listTime);
 router.get('/talks/:speaker/rating', controller.listRatingsBySpeaker);
 router.get('/talks/:id/ratingById', controller.listRatingsById);
-router.get('/talks/rate/:id/:rating', controller.rateTalkById)
+router.post('/talks/rate/:id/:rating', controller.rateTalkById)
 router.post('/posts', controller.handlePosts)
 
 router.use(function (req, res) {
