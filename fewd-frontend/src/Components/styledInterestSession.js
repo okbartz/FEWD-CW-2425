@@ -1,10 +1,10 @@
 import React from "react";
-import Stars from "./stars";
+import Stars from "./stars.js";
 import Accordion from "react-bootstrap/Accordion";
-import avgScore from "./CalcAvgRating"
+import avgScore from "./CalcAvgRating.js"
 
-import { RemoveSchedule } from "./ManipulateSchedule.js";
-
+import { RemoveInterest } from "./ManipulateInterest.js";
+import AddSchedule from "./ManipulateSchedule.js";
 
 
 const Item = ({ item,index }) => {
@@ -19,10 +19,10 @@ const Item = ({ item,index }) => {
         <p> Session: {item.session}</p>
         <p> Time: {item.time}</p>
         <p> Tags: {item.tags.join(', ')}</p>
-        <Stars position={item.id} />
         <p> Avg Rating: {avgScore(item.ratings)}</p>
         
-        <RemoveSchedule targetkey={"Schedule"} talkId={item.id}/>
+        <AddSchedule targetkey={"Schedule"} talkId={item.id}/>
+        <RemoveInterest targetkey={"Interest"} talkId={item.id}/>
 
       </Accordion.Body>
       </div>

@@ -1,62 +1,176 @@
 import { useLocalStorage } from "./useLocalStorage";
+
+import useFetchData from "./useFetchData";
 import React from "react";
 import StyledItem from "./styledScheduleSession";
 import Accordion from "react-bootstrap/Accordion";
 
-export default function AddSchedule({ key, talkId }) {
+// export default function AddSchedule({ targetkey, talkId }) {
+//     // Initialize state using useLocalStorage
+//     const [selectedTalks, setSelectedTalks] = useLocalStorage(targetkey, []);
+
+//     const {status, talks} = useFetchData();
+    
+//     // Add the new talk ID to the schedule
+//     const addToSchedule = () => {
+        
+//         var selectedTalks = GetSchedule(targetkey)
+
+        
+//         console.log("btn wrks")
+
+
+//         if (selectedTalks.some((element) => element === talkId)) {
+//             console.log("Entry already exists in schedule");
+//         } else {
+
+//             const filtered = talks.filter((entry) => {
+//                 return selectedTalks.some((Currenttargetkey) => {
+//                    if(Currenttargetkey !== null && Currenttargetkey !== true){ 
+                   
+       
+//                   return entry.id === (Currenttargetkey.toString())
+               
+               
+               
+//                 }
+//                return false;
+//            });
+//              });
+
+//              console.log(filtered)
+
+    
+//              const targetID = talks.filter((entry) => {
+//                 return entry.id.toLowerCase().includes(talkId.toString())
+//               });
+
+//               console.log(targetID)
+
+//         const checkSchedule = targetID.some((entry) => {
+
+
+//             filtered.some((Currenttargetkey) => {
+                
+                
+//                     if(entry.time === Currenttargetkey.time){
+
+//                         console.log("this time slot is already taken")
+//                         return true;
+                        
+//                     }
+//                     else {
+//                         console.log(Currenttargetkey.time , "!=", entry.time)
+                        
+//                         return false}
+                
+//             })
+
+
+//         });
+
+//         console.log("CheckShedule: ", checkSchedule)
+
+//         if (checkSchedule === false){
+//         const updatedSchedule = [...selectedTalks, talkId]; // Create a new array to avoid mutation
+        
+        
+        
+//         setSelectedTalks(updatedSchedule); // Update state using the setter function
+        
+//         console.log(updatedSchedule); // Log the updated schedule
+//         }
+    
+//     }
+    
+// }; 
+
+    
+//     // React.useEffect(() => {
+//     //     addToSchedule();
+//     // }, [talkId]);
+
+//   return (
+//     <div>
+//       <button
+//   className="btn btn-outline-success"
+//   onClick={() =>  addToSchedule("Schedule", talkId)}>
+
+// Add to schedule
+// </button>
+//     </div>
+//   );
+// }
+
+export default function AddSchedule({ targetkey, talkId }) {
     // Initialize state using useLocalStorage
-    const [selectedTalks, setSelectedTalks] = useLocalStorage(key, []);
+    const [selectedTalks, setSelectedTalks] = useLocalStorage(targetkey, []);
+
+    const { status, talks } = useFetchData();
 
     // Add the new talk ID to the schedule
     const addToSchedule = () => {
-        
-        if (selectedTalks.some((element) => element === talkId)) {
-            console.log("Entry already exists in schedule");
-        } else {
+        console.log("Button clicked");
 
-            
-        const updatedSchedule = [...selectedTalks, talkId]; // Create a new array to avoid mutation
-        
-        
-        
-        setSelectedTalks(updatedSchedule); // Update state using the setter function
-        console.log(updatedSchedule); // Log the updated schedule
+        var selectedTalks = GetSchedule(targetkey)
+
+        // Check if the talk is already in the schedule
+        if (selectedTalks.includes(talkId)) {
+            console.log("Entry already exists in the schedule");
+            alert("This talk is already exists in the schedule")
+            return;
         }
-    }; 
 
-    
-    // React.useEffect(() => {
-    //     addToSchedule();
-    // }, [talkId]);
+        // Find the details of the target talk
+        const targetTalk = talks.find((talk) => talk.id.toString() === talkId.toString());
+        if (!targetTalk) {
+            console.log("Target talk not found");
+            return;
+        }
 
-  return (
-    <div>
-      <button
-  className="btn btn-outline-success"
-  onClick={() =>  addToSchedule("Schedule", talkId)}>
+        // Check for time conflicts with already selected talks
+        const hasConflict = selectedTalks.some((id) => {
+            const scheduledTalk = talks.find((talk) => talk.id.toString() === id.toString());
+            return scheduledTalk && scheduledTalk.time === targetTalk.time;
+        });
 
-Add to schedule
-</button>
-    </div>
-  );
+        if (hasConflict) {
+            console.log("This time slot is already taken");
+            alert("The time slot is taken")
+            return;
+        }
+
+        // Add the new talk to the schedule
+        const updatedSchedule = [...selectedTalks, talkId];
+        setSelectedTalks(updatedSchedule);
+        console.log("Updated schedule:", updatedSchedule);
+    };
+
+    return (
+        <div>
+            <button className="btn btn-outline-success" onClick={addToSchedule}>
+                Add to schedule
+            </button>
+        </div>
+    );
 }
 
-export function ViewSchedule({key, talks}) {
+export function ViewSchedule({targetkey, talks}) {
 
 
     
-    const [selectedTalks, setSelectedTalks] =  useLocalStorage( key, "");
-    const schedule = selectedTalks;
-
+    const [selectedTalks, setSelectedTalks] =  useLocalStorage( targetkey, []);
+   
 
     console.log(selectedTalks)
-    console.log(key)
+    console.log(targetkey)
     console.log(talks)
     
     const filtered = talks.filter((entry) => {
-         return selectedTalks.some((Currentkey) => {if(Currentkey !== null && Currentkey !== true){ 
+         return selectedTalks.some((Currenttargetkey) => {
+            if(Currenttargetkey !== null && Currenttargetkey !== true){ 
             
-           return entry.id.toLowerCase().includes(Currentkey.toString().toLowerCase())
+           return entry.id === (Currenttargetkey.toString())
         }
         return false;
     });
@@ -65,10 +179,29 @@ export function ViewSchedule({key, talks}) {
       console.log("filter")
       console.log(filtered)
       
+      if(filtered === undefined || filtered.length === 0){
+        return (
+        
+        <>
+        
+        <p>There are currently no talks added to you schedule!!</p>
     
+        
+        </>
+
+    
+        )}
+      
+
+
+
+
     return (
+        
         <Accordion>
         {filtered.map((talk, index) => {
+
+        
             return (
             <Accordion.Item eventKey={index} key={index}>
                 <StyledItem item={talk} index={index} />
@@ -82,12 +215,32 @@ export function ViewSchedule({key, talks}) {
   
 }
 
-export function RemoveSchedule({ key, talkId }) {
+function GetSchedule(targetkey) {
+
+
+
+    const saved = localStorage.getItem(targetkey);
+    const initial = JSON.parse(saved);
+      
+    
+    return initial
+    
+
+  
+}
+
+
+export function RemoveSchedule({ targetkey, talkId }) {
     // Initialize state using useLocalStorage
-    const [selectedTalks, setSelectedTalks] = useLocalStorage(key, []);
+    const [selectedTalks, setSelectedTalks] = useLocalStorage(targetkey, []);
+
+    // TODO figure out how to place the local storage so that all the buttons are using the same memory.
 
     // Function to remove a talk ID from the schedule
     const RemoveFromSchedule = () => {
+        
+        var selectedTalks = GetSchedule(targetkey)
+
         // Check if the talkId exists in selectedTalks
         if (selectedTalks.includes(talkId)) {
             // Create a new array without the target talkId using filter
@@ -97,8 +250,11 @@ export function RemoveSchedule({ key, talkId }) {
 
             // Update state using the setter function
             setSelectedTalks(updatedSchedule);
-
+            
+            console.log(selectedTalks)
             //console.log("selectedTalks", selectedTalks);
+
+            document.getElementById(talkId).remove();
 
         } else {
             console.log("Talk ID not found in schedule");

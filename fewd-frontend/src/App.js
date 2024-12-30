@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navigation from './Components/Navigation';
-import Home from './Components/HomeLayout';
-import BrowseTalks from './Components/BrowseTalks';
+import Navigation from './Components/Pages/Navigation';
+import Home from './Components/Pages/HomeLayout';
+import BrowseTalks from './Components/Pages/BrowseTalks';
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 
