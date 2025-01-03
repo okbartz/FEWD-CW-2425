@@ -162,10 +162,8 @@ export function ViewSchedule({targetkey, talks}) {
     const [selectedTalks, setSelectedTalks] =  useLocalStorage( targetkey, []);
    
 
-    console.log(selectedTalks)
-    console.log(targetkey)
-    console.log(talks)
     
+    // filter the talks that the user has added
     const filtered = talks.filter((entry) => {
          return selectedTalks.some((Currenttargetkey) => {
             if(Currenttargetkey !== null && Currenttargetkey !== true){ 
@@ -178,7 +176,7 @@ export function ViewSchedule({targetkey, talks}) {
 
       console.log("filter")
       console.log(filtered)
-      
+      // if there is no talks present return
       if(filtered === undefined || filtered.length === 0){
         return (
         

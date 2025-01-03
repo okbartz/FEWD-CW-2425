@@ -4,7 +4,7 @@ import Accordion from "react-bootstrap/Accordion";
 import avgScore from "./CalcAvgRating"
 
 import AddInterest from "./ManipulateInterest";
-
+import AddSchedule from "./ManipulateSchedule.js";
 
 
 const Item = ({ item,index }) => {
@@ -22,6 +22,9 @@ const Item = ({ item,index }) => {
         <p> Avg Rating: {avgScore(item.ratings)}</p>
         
         <AddInterest targetkey={"Interest"} talkId={item.id}/>
+        <br></br>
+        <AddSchedule targetkey={"Schedule"} talkId={item.id}/>
+
 
       </Accordion.Body>
       

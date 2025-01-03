@@ -23,6 +23,7 @@ const Item = ({ item,index }) => {
         <p> Avg Rating: {avgScore(item.ratings)}</p>
         
         <RemoveSchedule targetkey={"Schedule"} talkId={item.id}/>
+        
 
       </Accordion.Body>
       </div>

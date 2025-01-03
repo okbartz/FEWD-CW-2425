@@ -3,39 +3,41 @@
 import useFetchData from "../useFetchData.js";
 import React from "react";
 import { ViewSchedule } from "../ManipulateSchedule.js";
-import { ViewInterest } from "../ManipulateInterest.js";
+import { Link, Outlet } from "react-router-dom";
 
 const Homelayout = () => {
-  const {status, talks} = useFetchData();
-  if (status==='fetched') 
+
   return (
+
+    <div class="text-center">
+
+      <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+
+
+        <main role="main" class="inner cover">
+          <h1 class="cover-heading">Conference for Web Developers</h1>
+          <p class="lead">This Web Application is designed to help organise attendees to plan their day(s) at the conference, the attendee can provide feedback to the talks.</p>
+          <p class="lead fw-normal">Get started below, add talks to your interested before adding them to your schedule.</p>
+
+          <p class="lead">
+
+          <Link class="btn btn-lg btn-secondary" to="browse">
+          Get Started
+        </Link>
+
+            
+          </p>
+        </main>
+
       
-      <div>
-        
-        <div className="container-fluid">
-        <div className="row">
-
-
-
-            <div className="col">
-            
-            <h3>Interested Talks</h3>
-            <ViewInterest targetkey={"Interest"} talks={talks}/>
-            
-            </div>
-
-            <div className="col">
-            
-            <h3>Schedule</h3>
-            <ViewSchedule targetkey={"Schedule"} talks={talks}/>
-            
-            </div>
-        </div> 
-        </div>
-       
-
       </div>
-    );
-  };
-  export default Homelayout;
-  
+
+
+      
+
+
+
+    </div>
+  );
+};
+export default Homelayout;

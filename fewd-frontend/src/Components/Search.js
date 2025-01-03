@@ -91,8 +91,11 @@ function Search({ talks }) {
      
 
         <h5>Current Search:</h5>
-
-          <TalkMenu talks={filtered} />
+        
+        <TalkMenu talks={filtered} />
+        
+        
+          
       </div>
   
   );

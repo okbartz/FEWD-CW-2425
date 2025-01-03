@@ -18,7 +18,7 @@ const useFetchData = () => {
     fetch(url)
       .then((response) => response.json())
       .then((incomingData) => {
-        console.log(incomingData)
+        //console.log(incomingData)
         setTalks(incomingData);
         setStatus('fetched');
       })

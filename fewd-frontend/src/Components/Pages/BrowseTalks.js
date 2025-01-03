@@ -21,8 +21,10 @@ const BrowseTalks = () => {
             <h3>Browse Talks</h3>
 
             <p>Use the different fields below to sort for specific talks that you are interested in.</p>
-
+            
             <Search talks={talks}/>
+            
+            
             
             
             </div>
