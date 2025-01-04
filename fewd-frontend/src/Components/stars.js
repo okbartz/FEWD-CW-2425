@@ -35,7 +35,8 @@ export default function StarRating({ position, totalStars = 5 }) {
 
 
   return (
-    <div>
+    <div class="border m-2 p-2">
+      <h5>Provide a rating</h5>
       {createArray(totalStars).map((n, i) => (
         <Star
           key={i}
@@ -48,7 +49,7 @@ export default function StarRating({ position, totalStars = 5 }) {
         {selectedStars} of {totalStars} are selected.
       </p>
       <button
-  className="button btn btn-primary"
+  className="button btn btn-primary m-1"
   onClick={() => rateTalk(talkId, selectedStars)}
 >
   Submit rating

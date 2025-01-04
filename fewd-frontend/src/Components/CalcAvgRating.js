@@ -1,5 +1,7 @@
 
+import Star from "./star";
 
+const createArray = length => [...Array(length)];
 const avgScore = (Scores) => {
 
   if (Scores.length === 0) return 0
@@ -15,7 +17,23 @@ const avgScore = (Scores) => {
   
   
   
-  return Math.round(totalScore / totalAmount);
+  return (
+    <div>
+    {createArray(5).map((n, i) => (
+            <Star
+              key={i}
+              selected={Math.round(totalScore / totalAmount) > i}
+              
+            />
+            
+          ))}
+
+
+
+          </div>
+  )
+  
+  
 };
 
 export default avgScore;

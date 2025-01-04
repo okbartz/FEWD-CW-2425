@@ -22,11 +22,13 @@ const Item = ({ item, index }) => {
           <p> Session: {item.session}</p>
           <p> Time: {item.time}</p>
           <p> Tags: {item.tags.join(', ')}</p>
-          <Stars position={item.id} />
           <p> Avg Rating: {avgScore(item.ratings)}</p>
-          <CommentTalk TalkId={item.id} />
-
           <RemoveSchedule targetkey={"Schedule"} talkId={item.id} />
+
+          
+          <CommentTalk TalkId={item.id} />
+          <Stars position={item.id} />
+          
 
           {item.comments && item.comments.length > 0 ? (
             <CommentDisplay comments={item.comments} />

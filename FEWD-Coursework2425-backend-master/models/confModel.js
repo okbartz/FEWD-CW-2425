@@ -251,6 +251,18 @@ class Conf {
 
     today = time + "\n" +  dd + '/' + mm + '/' + yyyy;
 
+    if(newComment === ""){
+      return console.error("comment is empty")
+    }
+    if(newComment.length < 10){
+      return console.error("comment is too short")
+    }
+
+    if(newComment.length > 250){
+      return console.error("comment is too long")
+    }
+    
+
     let comment=[newComment,today]
 
 
