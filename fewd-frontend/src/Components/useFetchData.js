@@ -11,6 +11,7 @@ const useFetchData = () => {
         time:"",
         tags:"",
         ratings:"",
+        comments:"",
       }]);
 
   const fetchData = useCallback(() => {

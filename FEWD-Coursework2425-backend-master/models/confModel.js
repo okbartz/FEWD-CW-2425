@@ -240,6 +240,32 @@ class Conf {
     });
   }
 
+
+  commentTalkById(id,newComment){
+    
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    var time = String(((today.getHours()<10?'0':'') + today.getHours()) + ":" + (today.getMinutes()<10?'0':'') + today.getMinutes());
+
+    today = time + "\n" +  dd + '/' + mm + '/' + yyyy;
+
+    let comment=[newComment,today]
+
+
+
+      return new Promise((resolve, reject) => {
+        this.conf.update({id:id},{$push:{'comments':comment}} , function (err, entries) {
+        if (err) {
+          reject(err);
+        } else {
+           resolve(entries);
+        }
+      });
+    });
+  }
+
   rateTalk(talkId,newRating){
     let id=String(talkId)
     let rating=Number(newRating)

@@ -94,6 +94,22 @@ exports.rateTalkById = function (req, res) {
     });
 };
 
+
+exports.commentTalkById = function (req, res) {
+  let talkId = req.params["id"];
+  let newComment = req.params["comment"];
+
+  
+
+  conf
+    .commentTalkById(talkId, newComment)
+    .then(console.log("adding comments using params"))
+    .catch((err) => {
+      console.log("promise rejected", err);
+    });
+};
+
+
 exports.handlePosts = function (req, res) {
   let talkId = req.body.talkId;
   let newRating = req.body.rating;

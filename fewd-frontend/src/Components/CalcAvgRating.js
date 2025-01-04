@@ -15,7 +15,7 @@ const avgScore = (Scores) => {
   
   
   
-  return totalScore / totalAmount
+  return Math.round(totalScore / totalAmount);
 };
 
 export default avgScore;

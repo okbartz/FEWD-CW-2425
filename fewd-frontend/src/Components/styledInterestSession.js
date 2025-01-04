@@ -5,7 +5,7 @@ import avgScore from "./CalcAvgRating.js"
 
 import { RemoveInterest } from "./ManipulateInterest.js";
 import AddSchedule from "./ManipulateSchedule.js";
-
+import CommentDisplay from "./DisplayComments.js";
 
 const Item = ({ item,index }) => {
   
@@ -23,6 +23,12 @@ const Item = ({ item,index }) => {
         
         <AddSchedule targetkey={"Schedule"} talkId={item.id}/>
         <RemoveInterest targetkey={"Interest"} talkId={item.id}/>
+
+        {item.comments && item.comments.length > 0 ? (
+            <CommentDisplay comments={item.comments} />
+          ) : (
+            <p>No comments available</p>
+          )}
 
       </Accordion.Body>
       </div>
