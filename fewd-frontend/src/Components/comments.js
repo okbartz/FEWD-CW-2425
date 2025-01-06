@@ -26,6 +26,8 @@ export default function CommentTalk({TalkId }) {
       return console.error("comment is too long")
     }
 
+    alert("Adding Comment")
+
     fetch(`http://localhost:3001/talks/comment/${id}/${comment}`, {
       method: "POST",
       headers: {
@@ -49,6 +51,7 @@ export default function CommentTalk({TalkId }) {
       .catch((err) => {
         console.error("Error commenting talk:", err);
       });
+
   }; 
 
 

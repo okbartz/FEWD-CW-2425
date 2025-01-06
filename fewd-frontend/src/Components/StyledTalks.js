@@ -4,6 +4,19 @@ import Accordion from "react-bootstrap/Accordion";
 
 
 const TalkMenu = ({ talks }) => {
+  if (talks === undefined || talks.length === 0) {
+    return (
+
+        <>
+
+            <p>There are currently no talks that match the criteria</p>
+
+
+        </>
+
+
+    )
+} else
   return (
     <Accordion>
       {talks.map((talk, index) => {

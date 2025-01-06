@@ -10,8 +10,9 @@ const CommentDisplay = ({comments}) => {
                         comments.map((comment, index) => {return comment !== null ? (
                             <div className="mb-3" key={index}>
                                 <div className="card">
+                                    <h5 class="card-header bs-linebreak">{comment[1]}</h5>
                                     <div className="card-body">
-                                        <h5 class="card-title bs-linebreak">{comment[1]}</h5>
+                                        
                                         <p className="card-text">{comment[0]}</p>
                                     </div>
                                 </div>

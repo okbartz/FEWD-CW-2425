@@ -23,7 +23,7 @@ export default function AddInterest({ targetkey, talkId }) {
         // Check if the talk is already in the interest
         if (selectedTalks.includes(talkId)) {
             console.log("Entry already exists in the interest");
-            alert("This talk is already exists in the interest")
+            alert("This talk already exists in the interest")
             return;
         }
 
@@ -47,9 +47,12 @@ export default function AddInterest({ targetkey, talkId }) {
         }
 
         // Add the new talk to the interest
+
+
         const updatedInterest = [...selectedTalks, talkId];
         setSelectedTalks(updatedInterest);
         console.log("Updated interest:", updatedInterest);
+        alert("Talk added to interested")
     };
 
     return (

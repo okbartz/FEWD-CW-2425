@@ -10,6 +10,24 @@ export default function StarRating({ position, totalStars = 5 }) {
   const talkId = position
 
   const rateTalk = (id, rating) => {
+
+
+    if(rating === 0){
+      alert("invalid rating: 0")
+      return console.error("invalid rating: 0")
+    }
+    if(rating < 0){
+      alert("invalid rating less than zero")
+      return console.error("invalid rating less than zero")
+    }
+
+    if(rating > 5){
+      alert("invalid rating more than five")
+      return console.error("invalid rating more than five")
+    }
+
+
+    alert("adding rating")
     fetch(`http://localhost:3001/talks/rate/${id}/${rating}`, {
       method: "POST",
       headers: {
@@ -22,10 +40,10 @@ export default function StarRating({ position, totalStars = 5 }) {
           throw new Error("Failed to rate the talk.");
         }
         return response.json();
-      })
+      
+      }
+    )
       .then((data) => {
-        //setMessage(`Thank you! You rated the talk with ID ${id} a ${rating}.`);
-        //toggleModal(message); // Assuming you show a modal with a message
         console.info(data)
       })
       .catch((err) => {

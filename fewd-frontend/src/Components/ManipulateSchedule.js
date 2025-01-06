@@ -10,13 +10,13 @@ import Accordion from "react-bootstrap/Accordion";
 //     const [selectedTalks, setSelectedTalks] = useLocalStorage(targetkey, []);
 
 //     const {status, talks} = useFetchData();
-    
+
 //     // Add the new talk ID to the schedule
 //     const addToSchedule = () => {
-        
+
 //         var selectedTalks = GetSchedule(targetkey)
 
-        
+
 //         console.log("btn wrks")
 
 
@@ -27,12 +27,12 @@ import Accordion from "react-bootstrap/Accordion";
 //             const filtered = talks.filter((entry) => {
 //                 return selectedTalks.some((Currenttargetkey) => {
 //                    if(Currenttargetkey !== null && Currenttargetkey !== true){ 
-                   
-       
+
+
 //                   return entry.id === (Currenttargetkey.toString())
-               
-               
-               
+
+
+
 //                 }
 //                return false;
 //            });
@@ -40,7 +40,7 @@ import Accordion from "react-bootstrap/Accordion";
 
 //              console.log(filtered)
 
-    
+
 //              const targetID = talks.filter((entry) => {
 //                 return entry.id.toLowerCase().includes(talkId.toString())
 //               });
@@ -51,19 +51,19 @@ import Accordion from "react-bootstrap/Accordion";
 
 
 //             filtered.some((Currenttargetkey) => {
-                
-                
+
+
 //                     if(entry.time === Currenttargetkey.time){
 
 //                         console.log("this time slot is already taken")
 //                         return true;
-                        
+
 //                     }
 //                     else {
 //                         console.log(Currenttargetkey.time , "!=", entry.time)
-                        
+
 //                         return false}
-                
+
 //             })
 
 
@@ -73,19 +73,19 @@ import Accordion from "react-bootstrap/Accordion";
 
 //         if (checkSchedule === false){
 //         const updatedSchedule = [...selectedTalks, talkId]; // Create a new array to avoid mutation
-        
-        
-        
+
+
+
 //         setSelectedTalks(updatedSchedule); // Update state using the setter function
-        
+
 //         console.log(updatedSchedule); // Log the updated schedule
 //         }
-    
+
 //     }
-    
+
 // }; 
 
-    
+
 //     // React.useEffect(() => {
 //     //     addToSchedule();
 //     // }, [talkId]);
@@ -111,13 +111,14 @@ export default function AddSchedule({ targetkey, talkId }) {
     // Add the new talk ID to the schedule
     const addToSchedule = () => {
         console.log("Button clicked");
+        
 
         var selectedTalks = GetSchedule(targetkey)
 
         // Check if the talk is already in the schedule
         if (selectedTalks.includes(talkId)) {
             console.log("Entry already exists in the schedule");
-            alert("This talk is already exists in the schedule")
+            alert("This talk already exists in the schedule")
             return;
         }
 
@@ -144,6 +145,7 @@ export default function AddSchedule({ targetkey, talkId }) {
         const updatedSchedule = [...selectedTalks, talkId];
         setSelectedTalks(updatedSchedule);
         console.log("Updated schedule:", updatedSchedule);
+        alert("Talk added to schedule")
     };
 
     return (
@@ -155,62 +157,63 @@ export default function AddSchedule({ targetkey, talkId }) {
     );
 }
 
-export function ViewSchedule({targetkey, talks}) {
+export function ViewSchedule({ targetkey, talks }) {
 
 
-    
-    const [selectedTalks, setSelectedTalks] =  useLocalStorage( targetkey, []);
-   
 
-    
+    const [selectedTalks, setSelectedTalks] = useLocalStorage(targetkey, []);
+
+
+
     // filter the talks that the user has added
     const filtered = talks.filter((entry) => {
-         return selectedTalks.some((Currenttargetkey) => {
-            if(Currenttargetkey !== null && Currenttargetkey !== true){ 
-            
-           return entry.id === (Currenttargetkey.toString())
-        }
-        return false;
+        return selectedTalks.some((Currenttargetkey) => {
+            if (Currenttargetkey !== null && Currenttargetkey !== true) {
+
+                return entry.id === (Currenttargetkey.toString())
+            }
+            return false;
+        });
     });
-      });
 
-      console.log("filter")
-      console.log(filtered)
-      // if there is no talks present return
-      if(filtered === undefined || filtered.length === 0){
+    console.log("filter")
+    console.log(filtered)
+    // if there is no talks present return
+    if (filtered === undefined || filtered.length === 0) {
         return (
-        
-        <>
-        
-        <p>There are currently no talks added to you schedule!!</p>
-    
-        
-        </>
 
-    
-        )}
-      
+            <>
+
+                <p>There are currently no talks added to you schedule!!</p>
+
+
+            </>
+
+
+        )
+    }
+
 
 
 
 
     return (
-        
-        <Accordion>
-        {filtered.map((talk, index) => {
 
-        
-            return (
-            <Accordion.Item eventKey={index} key={index}>
-                <StyledItem item={talk} index={index} />
-            </Accordion.Item>
-            );
-        })}
+        <Accordion>
+            {filtered.map((talk, index) => {
+
+
+                return (
+                    <Accordion.Item eventKey={index} key={index}>
+                        <StyledItem item={talk} index={index} />
+                    </Accordion.Item>
+                );
+            })}
         </Accordion>
     );
-    
 
-  
+
+
 }
 
 function GetSchedule(targetkey) {
@@ -219,12 +222,12 @@ function GetSchedule(targetkey) {
 
     const saved = localStorage.getItem(targetkey);
     const initial = JSON.parse(saved);
-      
-    
-    return initial
-    
 
-  
+
+    return initial
+
+
+
 }
 
 
@@ -236,7 +239,7 @@ export function RemoveSchedule({ targetkey, talkId }) {
 
     // Function to remove a talk ID from the schedule
     const RemoveFromSchedule = () => {
-        
+
         var selectedTalks = GetSchedule(targetkey)
 
         // Check if the talkId exists in selectedTalks
@@ -248,7 +251,7 @@ export function RemoveSchedule({ targetkey, talkId }) {
 
             // Update state using the setter function
             setSelectedTalks(updatedSchedule);
-            
+
             console.log(selectedTalks)
             //console.log("selectedTalks", selectedTalks);
 
