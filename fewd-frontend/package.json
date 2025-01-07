@@ -6,6 +6,8 @@
     "accordion": "^3.0.2",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
+    "express": "^4.21.2",
+    "path": "^0.12.7",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.7",
     "react-bootstrap-accordion": "^1.0.0",
