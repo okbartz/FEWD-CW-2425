@@ -15,7 +15,9 @@ const useFetchData = () => {
       }]);
 
   const fetchData = useCallback(() => {
-    const url = "http://localhost:3001/talks";
+    
+    const url = `${process.env.REACT_APP_API_URL}/talks`;
+
     fetch(url)
       .then((response) => response.json())
       .then((incomingData) => {

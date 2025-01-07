@@ -28,7 +28,7 @@ export default function CommentTalk({TalkId }) {
 
     alert("Adding Comment")
 
-    fetch(`http://localhost:3001/talks/comment/${id}/${comment}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/talks/comment/${id}/${comment}`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",

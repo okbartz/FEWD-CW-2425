@@ -28,7 +28,7 @@ export default function StarRating({ position, totalStars = 5 }) {
 
     //adding the rating to the backend db
     alert("adding rating")
-    fetch(`http://localhost:3001/talks/rate/${id}/${rating}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/talks/rate/${id}/${rating}`, {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",
