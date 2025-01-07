@@ -1,13 +1,13 @@
 import React from "react";
-import Stars from "./stars";
+import Stars from "../Rating/stars.js";
 import Accordion from "react-bootstrap/Accordion";
-import avgScore from "./CalcAvgRating"
+import avgScore from "../CalcAvgRating"
 
-import CommentTalk from "./comments.js";
+import CommentTalk from "../Comments/comments.js";
 
-import { RemoveSchedule } from "./ManipulateSchedule.js";
+import { RemoveSchedule } from "../ManipulateSchedule.js";
 
-import CommentDisplay from "./DisplayComments.js";
+import CommentDisplay from "../Comments/DisplayComments.js";
 
 
 const Item = ({ item, index }) => {
@@ -22,7 +22,7 @@ const Item = ({ item, index }) => {
           <p> Session: {item.session}</p>
           <p> Time: {item.time}</p>
           <p> Tags: {item.tags.join(', ')}</p>
-          <p> Avg Rating: {avgScore(item.ratings)}</p>
+          <p> Average Rating: {avgScore(item.ratings)}</p>
           <RemoveSchedule targetkey={"Schedule"} talkId={item.id} />
 
           

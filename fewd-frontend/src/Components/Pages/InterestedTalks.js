@@ -1,6 +1,6 @@
 
 
-import useFetchData from "../useFetchData.js";
+import useFetchData from "../Data/useFetchData.js";
 import React from "react";
 import { ViewInterest } from "../ManipulateInterest.js";
 

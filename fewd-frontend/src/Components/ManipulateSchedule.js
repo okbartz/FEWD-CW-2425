@@ -1,8 +1,8 @@
-import { useLocalStorage } from "./useLocalStorage";
+import { useLocalStorage } from "./Data/useLocalStorage";
 
-import useFetchData from "./useFetchData";
+import useFetchData from "./Data/useFetchData";
 import React from "react";
-import StyledItem from "./styledScheduleSession";
+import StyledItem from "./Styled/styledScheduleSession";
 import Accordion from "react-bootstrap/Accordion";
 
 // export default function AddSchedule({ targetkey, talkId }) {
@@ -202,7 +202,7 @@ export function ViewSchedule({ targetkey, talks }) {
         <Accordion>
             {filtered.map((talk, index) => {
 
-
+                // return the talks of the user
                 return (
                     <Accordion.Item eventKey={index} key={index}>
                         <StyledItem item={talk} index={index} />
@@ -218,7 +218,7 @@ export function ViewSchedule({ targetkey, talks }) {
 
 function GetSchedule(targetkey) {
 
-
+//retrieving from the local storage, to prevent actions from overriding other actions
 
     const saved = localStorage.getItem(targetkey);
     const initial = JSON.parse(saved);

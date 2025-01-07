@@ -1,11 +1,12 @@
 
-import Star from "./star";
+import Star from "./Rating/star";
 
+//calculating the average rating of stars
 const createArray = length => [...Array(length)];
 const avgScore = (Scores) => {
 
   if (Scores.length === 0) return 0
-  
+
   let totalScore = 0;
   let totalAmount = 0;
 
@@ -14,26 +15,27 @@ const avgScore = (Scores) => {
     totalAmount += 1;
   });
 
-  
-  
-  
+
+
+
   return (
     <div>
-    {createArray(5).map((n, i) => (
-            <Star
-              key={i}
-              selected={Math.round(totalScore / totalAmount) > i}
-              
-            />
-            
-          ))}
+      {createArray(5).map((n, i) => (
+        <Star
+          key={i}
+          // returning the average amount of stars rounded
+          selected={Math.round(totalScore / totalAmount) > i}
+
+        />
+
+      ))}
 
 
 
-          </div>
+    </div>
   )
-  
-  
+
+
 };
 
 export default avgScore;

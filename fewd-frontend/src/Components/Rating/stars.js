@@ -1,5 +1,5 @@
-import Star from "./star";
-import { useLocalStorage } from "./useLocalStorage";
+import Star from "../Rating/star";
+import { useLocalStorage } from "../Data/useLocalStorage";
 
 export default function StarRating({ position, totalStars = 5 }) {
 
@@ -11,7 +11,7 @@ export default function StarRating({ position, totalStars = 5 }) {
 
   const rateTalk = (id, rating) => {
 
-
+    //if statement checks for the rating
     if(rating === 0){
       alert("invalid rating: 0")
       return console.error("invalid rating: 0")
@@ -26,7 +26,7 @@ export default function StarRating({ position, totalStars = 5 }) {
       return console.error("invalid rating more than five")
     }
 
-
+    //adding the rating to the backend db
     alert("adding rating")
     fetch(`http://localhost:3001/talks/rate/${id}/${rating}`, {
       method: "POST",

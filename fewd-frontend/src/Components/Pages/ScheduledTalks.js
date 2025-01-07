@@ -1,5 +1,5 @@
 
-import useFetchData from "../useFetchData.js";
+import useFetchData from "../Data/useFetchData.js";
 import React from "react";
 import { ViewSchedule } from "../ManipulateSchedule.js";
 

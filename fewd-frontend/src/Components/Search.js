@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import TalkMenu from "./StyledTalks"
+import TalkMenu from "./Styled/StyledTalks"
 
 
 

@@ -59,7 +59,6 @@ export default function CommentTalk({TalkId }) {
     <div class="border m-2 p-2">
       <h5>Provide a comment</h5>
       <textarea placeholder="Type in a comment between 10 & 250 characters" id="commentBox" name="commentbox" rows="4" cols="50">
-      Type in a comment between 10 & 250 characters
       </textarea>
 <br></br>
       <button

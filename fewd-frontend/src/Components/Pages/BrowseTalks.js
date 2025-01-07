@@ -1,6 +1,6 @@
 
 // import { items } from "./data/data.js";
-import useFetchData from "../useFetchData.js";
+import useFetchData from "../Data/useFetchData.js";
 import React from "react";
 import Search from "../Search.js"
 

@@ -1,16 +1,16 @@
 import React from "react";
-import Stars from "./stars";
 import Accordion from "react-bootstrap/Accordion";
-import avgScore from "./CalcAvgRating"
+import avgScore from "../CalcAvgRating.js"
 
-import AddInterest from "./ManipulateInterest";
-import AddSchedule from "./ManipulateSchedule.js";
-import CommentDisplay from "./DisplayComments.js";
+import { RemoveInterest } from "../ManipulateInterest.js";
+import AddSchedule from "../ManipulateSchedule.js";
+import CommentDisplay from "../Comments/DisplayComments.js";
 
 const Item = ({ item,index }) => {
+  
   return (
     <>
-      
+      <div id = {item.id}>
      <Accordion.Header> {item.title}</Accordion.Header>
      <Accordion.Body>
         <p>{item.speaker}</p>
@@ -18,13 +18,11 @@ const Item = ({ item,index }) => {
         <p> Session: {item.session}</p>
         <p> Time: {item.time}</p>
         <p> Tags: {item.tags.join(', ')}</p>
+        <p> Average Rating: {avgScore(item.ratings)}</p>
         
-        <p> Avg Rating: {avgScore(item.ratings)}</p>
-        
-        <AddInterest targetkey={"Interest"} talkId={item.id}/>
-        <br></br>
         <AddSchedule targetkey={"Schedule"} talkId={item.id}/>
-        
+        <RemoveInterest targetkey={"Interest"} talkId={item.id}/>
+
         {item.comments && item.comments.length > 0 ? (
             <CommentDisplay comments={item.comments} />
           ) : (
@@ -32,7 +30,7 @@ const Item = ({ item,index }) => {
           )}
 
       </Accordion.Body>
-      
+      </div>
     </>
   );
 };

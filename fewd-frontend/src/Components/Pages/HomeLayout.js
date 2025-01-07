@@ -1,8 +1,7 @@
 
 
-import useFetchData from "../useFetchData.js";
+
 import React from "react";
-import { ViewSchedule } from "../ManipulateSchedule.js";
 import { Link, Outlet } from "react-router-dom";
 
 const Homelayout = () => {

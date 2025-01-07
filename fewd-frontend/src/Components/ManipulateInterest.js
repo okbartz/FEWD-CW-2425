@@ -1,8 +1,8 @@
-import { useLocalStorage } from "./useLocalStorage";
+import { useLocalStorage } from "./Data/useLocalStorage";
 
-import useFetchData from "./useFetchData";
+import useFetchData from "./Data/useFetchData";
 import React from "react";
-import StyledItem from "./styledInterestSession";
+import StyledItem from "./Styled/styledInterestSession";
 import Accordion from "react-bootstrap/Accordion";
 
 
@@ -71,10 +71,8 @@ export function ViewInterest({targetkey, talks}) {
     const [selectedTalks, setSelectedTalks] =  useLocalStorage( targetkey, []);
    
 
-    console.log(selectedTalks)
-    console.log(targetkey)
-    console.log(talks)
-    
+
+    // filter the talks that the user has added
     const filtered = talks.filter((entry) => {
          return selectedTalks.some((Currenttargetkey) => {
             if(Currenttargetkey !== null && Currenttargetkey !== true){ 
@@ -87,7 +85,7 @@ export function ViewInterest({targetkey, talks}) {
 
       console.log("filter")
       console.log(filtered)
-      
+       // if there is no talks present return
       if(filtered === undefined || filtered.length === 0){
         return (
         
@@ -110,7 +108,7 @@ export function ViewInterest({targetkey, talks}) {
         <Accordion>
         {filtered.map((talk, index) => {
 
-        
+        // return the talks of the user
             return (
             <Accordion.Item eventKey={index} key={index}>
                 <StyledItem item={talk} index={index} />
@@ -126,7 +124,7 @@ export function ViewInterest({targetkey, talks}) {
 
 function GetInterest(targetkey) {
 
-
+//retrieving from the local storage, to prevent actions from overriding other actions
 
     const saved = localStorage.getItem(targetkey);
     const initial = JSON.parse(saved);
